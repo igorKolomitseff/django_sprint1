@@ -1,3 +1,4 @@
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
 
@@ -45,19 +46,17 @@ posts = [
 ]
 
 
-def index(request):
-    template = 'blog/index.html'
-    context = {'posts': posts}
-    return render(request, template, context)
+def index(request: HttpRequest) -> HttpResponse:
+    return render(request, 'blog/index.html', {'posts': posts})
 
 
-def post_detail(request, id):
-    template = 'blog/detail.html'
-    context = {'post': posts[id]}
-    return render(request, template, context)
+def post_detail(request: HttpRequest, id: int) -> HttpResponse:
+    return render(request, 'blog/detail.html', {'post': posts[id]})
 
 
-def category_posts(request, category_slug):
-    template = 'blog/category.html'
-    context = {'category_slug': category_slug}
-    return render(request, template, context)
+def category_posts(request: HttpRequest, category_slug: str) -> HttpResponse:
+    return render(
+        request,
+        'blog/category.html',
+        {'category_slug': category_slug}
+    )
