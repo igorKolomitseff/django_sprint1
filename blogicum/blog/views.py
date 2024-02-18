@@ -55,8 +55,6 @@ def post_detail(request: HttpRequest, post_id: int) -> HttpResponse:
 
 
 def category_posts(request: HttpRequest, category_slug: str) -> HttpResponse:
-    return render(
-        request,
-        'blog/category.html',
-        {'category_slug': category_slug}
-    )
+    return render(request, 'blog/category.html', {
+        'category_slug': category_slug
+    })
