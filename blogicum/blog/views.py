@@ -50,8 +50,8 @@ def index(request: HttpRequest) -> HttpResponse:
     return render(request, 'blog/index.html', {'posts': posts})
 
 
-def post_detail(request: HttpRequest, id: int) -> HttpResponse:
-    return render(request, 'blog/detail.html', {'post': posts[id]})
+def post_detail(request: HttpRequest, post_id: int) -> HttpResponse:
+    return render(request, 'blog/detail.html', {'post': posts[post_id]})
 
 
 def category_posts(request: HttpRequest, category_slug: str) -> HttpResponse:
