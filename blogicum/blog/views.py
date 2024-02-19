@@ -46,6 +46,9 @@ posts = [
 ]
 
 
+posts_by_id = {post['id']: post for post in posts}
+
+
 def index(request):
     return render(request, 'blog/index.html', {
         'posts': posts,
@@ -53,10 +56,14 @@ def index(request):
 
 
 def post_detail(request, post_id):
-    if post_id not in [post['id'] for post in posts]:
-        raise Http404
+    if post_id not in posts_by_id.keys():
+        raise Http404(
+            f'The requested page was not found: {request.path}. '
+            f'Invalid value of the path variable: post_id = {post_id}. '
+            f'A post with the specified key does not exist.'
+        )
     return render(request, 'blog/detail.html', {
-        'post': [post for post in posts if post['id'] == post_id][0],
+        'post': posts_by_id[post_id],
     })
 
 
