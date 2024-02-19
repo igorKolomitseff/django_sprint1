@@ -60,7 +60,7 @@ def post_detail(request, post_id):
         raise Http404(
             f'The requested page was not found: {request.path}. '
             f'Invalid value of the path variable: post_id = {post_id}. '
-            f'A post with the specified key does not exist.'
+            'A post with the specified key does not exist.'
         )
     return render(request, 'blog/detail.html', {
         'post': posts_by_id[post_id],
