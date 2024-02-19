@@ -1,4 +1,4 @@
-from django.http import HttpRequest, HttpResponse, Http404
+from django.http import Http404
 from django.shortcuts import render
 
 
@@ -46,13 +46,13 @@ posts = [
 ]
 
 
-def index(request: HttpRequest) -> HttpResponse:
+def index(request):
     return render(request, 'blog/index.html', {
         'posts': posts,
     })
 
 
-def post_detail(request: HttpRequest, post_id: int) -> HttpResponse:
+def post_detail(request, post_id):
     if post_id not in [post['id'] for post in posts]:
         raise Http404
     return render(request, 'blog/detail.html', {
@@ -60,7 +60,7 @@ def post_detail(request: HttpRequest, post_id: int) -> HttpResponse:
     })
 
 
-def category_posts(request: HttpRequest, category_slug: str) -> HttpResponse:
+def category_posts(request, category_slug):
     return render(request, 'blog/category.html', {
         'category_slug': category_slug,
     })

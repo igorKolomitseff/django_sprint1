@@ -1,10 +1,9 @@
-from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
 
-def about(request: HttpRequest) -> HttpResponse:
+def about(request):
     return render(request, 'pages/about.html')
 
 
-def rules(request: HttpRequest) -> HttpResponse:
+def rules(request):
     return render(request, 'pages/rules.html')
